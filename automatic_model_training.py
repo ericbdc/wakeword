@@ -77,6 +77,7 @@ os.system("wget -O piper-sample-generator/models/en_US-libritts_r-medium.pt 'htt
 os.system('pip install piper-phonemize')
 os.system('pip install webrtcvad')
 os.system('pip install -r piper-sample-generator/requirements.txt')
+os.system('export PATH=$PATH:/home/ubuntu/.local/bin')
 
 # install openwakeword (full installation to support training)
 os.system('git clone https://github.com/dscripka/openwakeword')
@@ -97,6 +98,8 @@ os.system('pip install onnx_tf==1.10.0')
 os.system('pip install pronouncing==0.2.0')
 os.system('pip install datasets==2.14.6')
 os.system('pip install deep-phonemizer==0.0.19')
+os.system("pip install numpy==1.26.2")
+os.system("pip install torchvision==0.16.1")
 
 # Download required models (workaround for Colab)
 os.makedirs("./openwakeword/openwakeword/resources/models", exist_ok=True)

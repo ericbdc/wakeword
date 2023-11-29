@@ -1,1 +1,4 @@
 notebook==7.0.6
+numpy==1.26.2
+openwakeword==0.5.1
+pyaudio==0.2.14

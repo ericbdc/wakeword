@@ -1,0 +1,12 @@
+*.npy
+*.wav
+*log
+audioset
+audioset_16k
+fma
+mit_rirs
+my_custom_model
+my_model.yaml
+openwakeword
+piper-sample-generator
+venv

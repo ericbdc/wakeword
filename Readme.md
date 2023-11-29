@@ -21,9 +21,9 @@ cd wakeword
 
 ### Get a remote machine
 
-First you need a running Linux platform available, e.g.: AWS EC2 Ubuntu.
+First you need a running Linux platform available, e.g.: AWS EC2 Ubuntu (all runs in ~30min on a t3.2xlarge).
 
-:warning: Beware that you will need about 40Gb space disk.
+:warning: Beware that you will need about 32Gb space disk if your chose only 1 hour clips.
 
 In that case, you will generate a Key Pair, name it `wakeword` and download the `wakeword.pem` file to your `~/.ssh/` folder.
 
@@ -73,3 +73,9 @@ jupyter nbconvert automatic_model_training.ipynb --to python
 ```
 
 If you made any change, you will need to copy it again to your remote machine.
+
+## Testing the wakeword model
+
+```zsh
+python detect_from_microphone.py --inference_framework=onnx --model_path='my_custom_model/simbad.onnx'
+```
