@@ -64,7 +64,7 @@ else:
 
 n_models = len(owwModel.models.keys())
 
-# Run capture loop continuosly, checking for wakewords
+# Run capture loop continuously, checking for wakewords
 if __name__ == "__main__":
     # Generate output string header
     print("\n\n")
