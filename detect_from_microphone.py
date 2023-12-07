@@ -50,14 +50,37 @@ CHANNELS = 1
 RATE = 16000
 CHUNK = args.chunk_size
 audio = pyaudio.PyAudio()
+MICROPHONE_NAME = "External Microphone"  # put your microphone name
+
+devices_info = audio.get_host_api_info_by_index(0)
+num_devices = devices_info.get("deviceCount")
+
+if num_devices == 0:
+    raise RuntimeError("No microphone found!")
+
+device_info = {"index": 0, "name": "default", "maxInputChannels": 0}
+for i in range(0, num_devices):
+    device_info = audio.get_device_info_by_host_api_device_index(0, i)
+    if (
+        MICROPHONE_NAME == device_info.get("name")
+        and (device_info.get("maxInputChannels")) > 0
+    ):
+        break
+
 mic_stream = audio.open(
-    format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK
+    format=FORMAT,
+    channels=CHANNELS,
+    rate=RATE,
+    input=True,
+    frames_per_buffer=CHUNK,
+    input_device_index=device_info["index"],
 )
 
 # Load pre-trained openwakeword models
 if args.model_path != "":
     owwModel = Model(
-        wakeword_models=[args.model_path], inference_framework=args.inference_framework
+        wakeword_models=[args.model_path],
+        inference_framework=args.inference_framework,
     )
 else:
     owwModel = Model(inference_framework=args.inference_framework)
